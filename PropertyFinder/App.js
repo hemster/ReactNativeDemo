@@ -9,13 +9,28 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  NavigatorIOS,
 } from 'react-native';
 
 type Props = {};
-export default class App extends Component<Props> {
+
+class SearchPage extends Component<{}> {
   render() {
-    return React.createElement(Text, {style: styles.description}, "Search for houses to buy!");
+    return <Text style={styles.description}>Search for houses to buy!</Text>;
+  }
+}
+
+export default class App extends Component<{}> {
+  render() {
+    return (
+      <NavigatorIOS
+        style={styles.container}
+        initialRoute={{
+          title: 'Property Finder',
+          component: SearchPage,
+        }}/>
+    );
   }
 }
 
@@ -25,5 +40,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#656565',
     marginTop: 65,
+  },
+  container: {
+    flex: 1,
   },
 });
