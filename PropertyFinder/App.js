@@ -6,20 +6,12 @@
 'use strict';
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
-  Text,
-  View,
   NavigatorIOS,
 } from 'react-native';
+import SearchPage from './SearchPage';
 
 type Props = {};
-
-class SearchPage extends Component<{}> {
-  render() {
-    return <Text style={styles.description}>Search for houses to buy!</Text>;
-  }
-}
 
 export default class App extends Component<{}> {
   render() {
