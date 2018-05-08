@@ -12,30 +12,46 @@ import {
 } from 'react-native';
 
 export default class SearchPage extends Component<{}> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.description}>
-          Search for houses to buy!
-        </Text>
-        <Text style={styles.description}>
-          Search by place-name or postcode.
-        </Text>
-        <View style={styles.flowRight}>
-  		<TextInput 
-  			style={styles.searchInput}
-		    placeholder='Search via name or postcode'/>
-		  <Button
-		    onPress={() => {}}
-		    color='#48BBEC'
-		    title='Go'
-		  />
-		</View>
-		<Image source={require('./Resources/house.png')} style={styles.image}/>
-      </View>
-    );
-  }
-}
+	constructor(props) {
+	  super(props);
+	  this.state = {
+	    searchString: 'london'
+	  };
+	}
+
+	_onSearchTextChanged = (event) => {
+	  console.log('_onSearchTextChanged');
+	  this.setState({ searchString: event.nativeEvent.text });
+	  // ???: this.state.searchString change after the whole scope of code excuted?
+	  console.log('Current: '+this.state.searchString+', Next: '+event.nativeEvent.text);
+	};
+
+	render() {
+		console.log('SearchPage.render');
+		return (
+		  <View style={styles.container}>
+		    <Text style={styles.description}>
+		      Search for houses to buy!
+		    </Text>
+		    <Text style={styles.description}>
+		      Search by place-name or postcode.
+		    </Text>
+		    <View style={styles.flowRight}>
+				<TextInput
+				style={styles.searchInput}
+				value={this.state.searchString}
+				onChange={this._onSearchTextChanged}
+				placeholder='Search via name or postcode'/>
+		  	<Button
+		  		onPress={() => {}}
+			    color='#48BBEC'
+			    title='Go'/>
+			</View>
+			<Image source={require('./Resources/house.png')} style={styles.image}/>
+		  </View>
+		);
+		}
+	}
 
 const styles = StyleSheet.create({
   description: {
